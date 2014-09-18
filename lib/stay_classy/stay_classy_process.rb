@@ -7,7 +7,6 @@ module StayClassyProcess
 
 		# if you need the views directory: StayClassy::Builder::VIEWS_DIR
 		prefix = stay_classy.instance_variable_get(:@prefix)
-		stay_classy.instance_variable_get(:@views_dir)
 		view_dirs = stay_classy.instance_variable_get(:@specified_view_directories)
 
 		printf "\n\n Directories to make classy with prefix #{ prefix }: \n".colorize( :yellow )
@@ -21,12 +20,11 @@ module StayClassyProcess
   		end
   	end
 
-		# I want to be on those files.
 	end
 
 	# Prepare the Sex Panther
 	def load_file( input )
-		@doc = doc = Nokogiri::HTML::Document.parse( input )
+		doc = Nokogiri::HTML::Document.parse( input )
 		p input
 	end
 	alias :brian_fantana :load_file

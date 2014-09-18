@@ -12,28 +12,37 @@ module StayClassyProcess
 
 		printf "\n\n Directories to make classy with prefix #{ prefix }: \n".colorize( :yellow )
 
-		view_dirs.each do |view_dir|
-			printf "#{ view_dir }\n".colorize( :green )
-		end
+		# Have Brian Fantana load those files.
+		view_dirs.each do |vd|
+			Dir.foreach( vd ) do |file|
+				if file.match( StayClassy::Builder::VIEW_FILE_TYPES_REGEX )
+					brian_fantana( file )
+				end
+  		end
+  	end
 
 		# I want to be on those files.
-		doc = Nokogiri::HTML( '' )
-  		# doc.css("div.to-replace").each do |div|
-    # 		 "get_html_text" will obtain HTML from db. It can be anything, even another tags, tag groups etc.
-    # 		div.replace self.get_html_text
-  		# end
-  		# self.content = doc.css("body").first.inner_html
 	end
 
-	def load_file
+	# Prepare the Sex Panther
+	def load_file( input )
+		@doc = doc = Nokogiri::HTML::Document.parse( input )
+		p input
 	end
+	alias :brian_fantana :load_file
 
+	# Slap some BBQ sauce on them elements and... Hawoooooooo, woo, woo, woo!!!!
 	def add_classes_to_file
 	end
+	alias :champ_kind :add_classes_to_file
 
+	# Invite the ids to the pants party
 	def add_ids_to_file
 	end
+	alias :brick_tamlin :add_ids_to_file
 
+	# Thanks for listening, San Diego
 	def save_new_file
 	end
+	alias :veronica_corningstone :save_new_file
 end

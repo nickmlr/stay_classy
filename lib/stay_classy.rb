@@ -26,6 +26,7 @@ module StayClassy
 
 		######## StayClassy will only look within the rails/app/views directory. Leave the rest to the channel 9 news team ########
 		VIEWS_DIR = '/home/users/nmueller/Sandbox/tester/app/views/'.freeze #"#{ Rails.root.join( 'app', 'views' ) }"
+		VIEW_FILE_TYPES_REGEX = Regexp.union( /\.html\.erb$/ , /\.html$/ ) 
 		DEFAULT_CLASS_TAGS = %w( h1 h2 h3 h4 h5 h6 div table p ).freeze
 		DEFAULT_ID_TAGS = %w( p span ).freeze
 
@@ -85,10 +86,10 @@ end
 
 # Pass intended directories and class/id prefix to new instance
 stay_classy = StayClassy::Builder.new( options = { :prefix => 'nmm',
-																					:dirs => %w( home ../shared users/sub_users )
+																					#:dirs => %w( home ../shared users/sub_users )
 																				 } )
 
-# If directories are there, send stay_classy off for processing. If not, go f*ck youself San Diego
+# If directories are there, whammy, send stay_classy off for processing. If not, go f*ck youself San Diego
 if stay_classy.instance_variable_get( :@specified_view_directories ).count == 0
 	printf "\n No directories found. If you were a man I would punch you! \n"
 else

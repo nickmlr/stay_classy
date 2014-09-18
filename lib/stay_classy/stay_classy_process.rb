@@ -13,7 +13,7 @@ module StayClassyProcess
 		view_dirs.each do |view_dir|
 			printf "#{ view_dir }\n".colorize( :green )
 		end
-		#doc = Nokogiri::HTML(  )
+		doc = Nokogiri::HTML( '' )
   		# doc.css("div.to-replace").each do |div|
     # 		 "get_html_text" will obtain HTML from db. It can be anything, even another tags, tag groups etc.
     # 		div.replace self.get_html_text

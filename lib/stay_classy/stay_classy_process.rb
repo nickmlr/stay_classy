@@ -2,11 +2,11 @@ require 'nokogiri'
 
 module StayClassyProcess
 
-	# Once you've built an instance of stay_classy, it's time to hand it over to the 6 news team.
+	# Once you've built an instance of stay_classy, it's time to hand it over to the channel 6 news team.
 	def process( stay_classy )
 
 		prefix = stay_classy.instance_variable_get( :@prefix )
-		view_dirs = stay_classy.instance_variable_get( :@specified_view_directories )
+		view_dirs = stay_classy.instance_variable_get( :@view_directories )
 
 		printf "\nDirectories to make classy with prefix #{ prefix }: \n".colorize( :yellow )
 		view_dirs.map { |vd| printf "#{ vd }\n" }
@@ -24,7 +24,7 @@ module StayClassyProcess
 
 	end
 
-	# Get the bits of real panther, even if they smell like a turd covered in burnt hair
+	# Get the bits of real panther so you know it's good, even if they smell like a turd covered in burnt hair
 	def load_file( file )
 		@doc = Nokogiri::HTML::Document.parse( file )
 	end

@@ -36,7 +36,7 @@ module StayClassy
 		  	if options[:dirs]
 
 		  		directories = options[:dirs]
-		  		@specified_view_directories = []
+		  		@view_directories = []
 		  		
 		  		directories.each do |dir|
 
@@ -45,14 +45,14 @@ module StayClassy
 
 		  			# Build an array of valid directories. I don't know if you heard me counting, but I can do over 1,000.
 		  			if valid_dir?( dir ) 
-		  				@specified_view_directories << "#{ VIEWS_DIR }#{ dir }"
+		  				@view_directories << "#{ VIEWS_DIR }#{ dir }"
 		  			else
 		  				printf "\n#{ VIEWS_DIR }#{ dir } is not a valid directory. That's bush!".colorize( :red )
 		  			end
 		  		end
 
 		  	else
-		  		@specified_view_directories = get_view_directories
+		  		@view_directories = get_view_directories
 		  	end
 
 		  	######## Prefix for all classes/ids ########
@@ -66,9 +66,9 @@ module StayClassy
 		  end
 	  end
 
-	  # Sixty percent of the time, valid directories will return true every time.
+	  # Sixty percent of the time, valid directories will return true every time
 	  def valid_dir?( directory )
-		  Dir.exists?( "#{ VIEWS_DIR }#{ directory }" )
+			Dir.exists?( "#{ VIEWS_DIR }#{ directory }" )
 		end
 
 		# If no directories are specified, find every directory in the views folder recursively
@@ -90,7 +90,7 @@ stay_classy = StayClassy::Builder.new( options = { :prefix => 'nmm',
 																				 } )
 
 # If directories are there, whammy, send stay_classy off for processing. If not, go f*ck youself San Diego
-if stay_classy.instance_variable_get( :@specified_view_directories ).count == 0
+if stay_classy.instance_variable_get( :@view_directories ).count == 0
 	printf "\n No directories found. If you were a man I would punch you! \n"
 else
 	StayClassyProcess.process( stay_classy )

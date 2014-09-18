@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+# A tool to add classes and ids to your html files
+require 'stay_classy'
+StayClassy.new(ARGV)

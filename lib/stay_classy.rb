@@ -66,7 +66,7 @@ module StayClassy
 		  end
 	  end
 
-	  # Sixty percent of the time, valid directories will return true every time
+		# Sixty percent of the time, valid directories will return true every time
 		def valid_dir?( directory )
 			Dir.exists?( "#{ VIEWS_DIR }#{ directory }" )
 		end

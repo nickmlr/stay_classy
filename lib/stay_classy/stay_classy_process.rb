@@ -37,7 +37,8 @@ module StayClassyProcess
 
 				rescue Exception => e
 
-      		p "#{e}"
+					# Bark out those errors, Baxter. You know I don't speak Spanish.
+      		baxter( e )
 
 				end
   		end

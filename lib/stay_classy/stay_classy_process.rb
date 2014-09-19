@@ -17,6 +17,8 @@ module StayClassyProcess
 			Dir.foreach( vd ) do |file|
 				begin
 
+					@errors ||= []
+
 					if file.match( StayClassy::Builder::VIEW_FILE_TYPES_REGEX )
 
 						# Brian Fantana for Sex Pantherization.
@@ -47,31 +49,48 @@ module StayClassyProcess
 
 	# Get the bits of real panther so you know it's good
 	def load_file( file )
-		@doc ||= Nokogiri::HTML::Document.parse( file )
+		begin
+			@doc ||= Nokogiri::HTML::Document.parse( file )
+		rescue Exception => e
+			baxter( e )
+		end
 	end
 	alias :brian_fantana :load_file
 
 	# Slap some BBQ sauce on them elements and... Hawoooooooo, woo, woo, woo!!!!
 	def add_classes_to_file( file )
-		printf "#{ file } - Champ Kind, whammy!\n"
+		begin
+			printf "#{ file } - Champ Kind, whammy!\n"
+		rescue Exception => e
+			baxter( e )
+		end
 	end
 	alias :champ_kind :add_classes_to_file
 
 	# Invite the ids to the pants party
 	def add_ids_to_file( file )
-		printf "#{ file } - Brick Tamland licking a toaster\n"
+		begin
+			printf "#{ file } - Brick Tamland licking a toaster\n"
+		rescue Exception => e
+			baxter( e )
+		end
 	end
 	alias :brick_tamland :add_ids_to_file
 
 	# Thanks for listening, San Diego. And stay classy, San Diego. Thanks for listening, San Diego.
 	def save_new_file( file )
-		printf "#{ file } - Veronica Corningstone, signing off\n"
+		begin
+			printf "#{ file } - Veronica Corningstone, signing off\n"
+		rescue Exception => e
+			baxter( e )
+		end
 	end
 	alias :veronica_corningstone :save_new_file
 
 #################################################################
 	
-	def baxter( file )
-		printf "#{ file }\n"
+	# Really doesn't need to be here. He just barks out errors
+	def baxter( exception )
+		@errors << exception
 	end
 end

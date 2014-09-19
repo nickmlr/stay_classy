@@ -39,6 +39,7 @@ module StayClassyProcess
 
 					# Bark out those errors, Baxter. You know I don't speak Spanish.
       		baxter( e )
+      		printf "#{ @errors }\n" if @errors.any?
 
 				end
   		end

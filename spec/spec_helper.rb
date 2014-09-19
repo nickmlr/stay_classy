@@ -4,5 +4,6 @@ Bundler.setup
 require 'stay_classy'
 
 RSpec.configure do |config|
-  # some (optional) config here
+  config.fail_fast = true
+  config.color = true
 end

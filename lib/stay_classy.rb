@@ -41,13 +41,13 @@ module StayClassy
 		  		directories.each do |dir|
 
 		  			# Filter out the not so classy characters. No scotch or ribs for them. Banish them to a whale's vagina
-		  			dir.gsub( /[^0-9a-z -_]/i, '' )
+		  			dir = dir.gsub( /[^0-9a-z -_]/i, '' )
 
 		  			# Build an array of valid directories. I don't know if you heard me counting, but I can do over 1,000.
 		  			if valid_dir?( dir ) 
 		  				@view_directories << "#{ VIEWS_DIR }#{ dir }"
 		  			else
-		  				printf "\n#{ VIEWS_DIR }#{ dir } is not a valid directory. That's bush!".colorize( :red )
+		  				printf "\n#{ VIEWS_DIR }/#{ dir } is not a valid directory. That's bush!\n".colorize( :red )
 		  			end
 		  		end
 
@@ -77,7 +77,7 @@ module StayClassy
 		end
 
 		def set_prefix( prefix )
-			starter_string = prefix.gsub( /[^0-9a-z ]/i, '' )
+			starter_string = prefix.gsub( /[^0-9a-z_-]/i, '' )
 			return "#{ starter_string }_"
 		end
 

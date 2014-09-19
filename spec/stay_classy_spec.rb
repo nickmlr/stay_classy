@@ -9,7 +9,7 @@ describe "The stay_classy gem" do
 	  end
 
 	  it "should validate the directories passed in as options" do
-	    stay_classy = StayClassy::Builder.new( options = { :dirs => [ 'home' , 'about' , 'contact' , '../dookie' ] } )
+	    stay_classy = StayClassy::Builder.new( options = { :dirs => [ 'home' , 'about();' , '&&contact' , '../../dookie' ] } )
 	    expect( stay_classy.instance_variable_get( :@view_directories ) ).to eq( [] )
 	  end
 
@@ -18,7 +18,7 @@ describe "The stay_classy gem" do
 	    expect( stay_classy.instance_variable_get( :@prefix ) ).to eq( 'classy_' )
 	  end
 
-	  it "should use the user supplied prefix if specified" do
+	  it "should use the user supplied prefix if specified with an added underscore" do
 	    stay_classy = StayClassy::Builder.new( options = { :prefix => 'testing_prefix' } )
 	    expect( stay_classy.instance_variable_get( :@prefix ) ).to eq( 'testing_prefix_' )
 	  end

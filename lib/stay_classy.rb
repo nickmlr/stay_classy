@@ -41,7 +41,7 @@ module StayClassy
 		  		directories.each do |dir|
 
 		  			# Filter out the not so classy characters. No scotch or ribs for them. Banish them to a whale's vagina
-		  			dir = dir.gsub( /[^0-9a-z-_]/i, '' )
+		  			dir = dir.gsub( /[^0-9a-z_-]/i, '' )
 
 		  			# Build an array of valid directories. I don't know if you heard me counting, but I can do over 1,000.
 		  			if valid_dir?( dir ) 

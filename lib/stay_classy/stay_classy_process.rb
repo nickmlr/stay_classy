@@ -53,6 +53,7 @@ module StayClassyProcess
 	def load_file( file )
 		begin
 			@doc ||= Nokogiri::HTML::Document.parse( file )
+			p "#{file}"
 		rescue Exception => e
 			baxter( e )
 		end
@@ -62,7 +63,7 @@ module StayClassyProcess
 	# Slap some BBQ sauce on them elements and... Hawoooooooo, woo, woo, woo!!!!
 	def add_classes_to_file( file )
 		begin
-			printf "#{ file } - Champ Kind, whammy!\n"
+			# pass in predefined classes
 		rescue Exception => e
 			baxter( e )
 		end
@@ -71,8 +72,8 @@ module StayClassyProcess
 
 	# Invite the ids to the pants party
 	def add_ids_to_file( file )
+		# pass in predefined ids
 		begin
-			printf "#{ file } - Brick Tamland licking a toaster\n"
 		rescue Exception => e
 			baxter( e )
 		end
@@ -82,7 +83,6 @@ module StayClassyProcess
 	# Thanks for listening, San Diego. And stay classy, San Diego. Thanks for listening, San Diego.
 	def save_new_file( file )
 		begin
-			printf "#{ file } - Veronica Corningstone, signing off\n"
 		rescue Exception => e
 			baxter( e )
 		end

@@ -49,11 +49,10 @@ module StayClassyProcess
 
 ############### LADIES AND GENTLEMEN, NEWS TEAM 6 ###############
 
-	# Get the bits of real panther so you know it's good
+	# Get the bits of real panther so you know it's good (it opens the file)
 	def load_file( file )
 		begin
-			@doc ||= Nokogiri::HTML::Document.parse( file )
-			p "#{file}"
+			@doc = File.open( file , 'w')
 		rescue Exception => e
 			baxter( e )
 		end
@@ -63,6 +62,7 @@ module StayClassyProcess
 	# Slap some BBQ sauce on them elements and... Hawoooooooo, woo, woo, woo!!!!
 	def add_classes_to_file( file )
 		begin
+			@doc.write("Foop")
 			# pass in predefined classes
 		rescue Exception => e
 			baxter( e )

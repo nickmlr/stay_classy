@@ -1,0 +1,13 @@
+<% page_header "Event/Tradeshow", @event.name %>
+<%= page_image "site_images/overview_image.jpg" %>
+
+<div class="padded">
+  <p><%= @event.date %></p>
+  <%= @event.description %>
+  <p><%= link_to "Additional Information", @event.url %></p>
+</div>
+
+<% admin_nav do %>
+  <p><%= link_to "Edit event", edit_event_path(@event) %></p>
+  <p><%= link_to "Back to list", events_path %></p>
+<% end -%>

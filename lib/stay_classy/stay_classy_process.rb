@@ -1,4 +1,5 @@
-require 'nokogiri'
+require 'tempfile'
+require 'fileutils'
 
 module StayClassyProcess
 
@@ -15,24 +16,27 @@ module StayClassyProcess
 		printf "\nFiles to make classy: \n".colorize( :yellow )
 		view_dirs.each do |vd|
 			Dir.foreach( vd ) do |file|
-				begin
 
+				# Send each file in each file in the directory to each member of the news team
+				begin
 					@errors ||= []
 
 					if file.match( StayClassy::Builder::VIEW_FILE_TYPES_REGEX )
 
+						@view_directory ||= vd
+
 						# Brian Fantana for Sex Pantherization.
-						# He gets @doc for the rest of the team.
+						# He gets @filename for the rest of the team.
 						brian_fantana( file )
 
-						# Champ Kind takes @doc for sex and chicken
-						champ_kind( @doc )
+						# Champ Kind takes @filename for sex and chicken
+						champ_kind( @filename )
 
-						# Puts @doc in a toaster...fantastic
-						brick_tamland( @doc )
+						# Puts @filename in a toaster...fantastic
+						brick_tamland( @filename )
 
 						# Wears a bra next time
-						veronica_corningstone( @doc )
+						veronica_corningstone( @filename )
 					end
 
 				rescue Exception => e
@@ -52,36 +56,62 @@ module StayClassyProcess
 	# Get the bits of real panther so you know it's good (it opens the file)
 	def load_file( file )
 		begin
-			@doc = File.open( file , 'w')
+			@filename ||= file
 		rescue Exception => e
 			baxter( e )
 		end
 	end
 	alias :brian_fantana :load_file
 
-	# Slap some BBQ sauce on them elements and... Hawoooooooo, woo, woo, woo!!!!
-	def add_classes_to_file( file )
+	# Slap some BBQ sauce on them elements and woo, woo, woo!!!!
+	def add_classes_to_file( filename )
+
+		path = "#{@view_directory}#{filename}"
+		temp_file = Tempfile.new( 'foo' )
+
 		begin
-			@doc.write("Foop")
-			# pass in predefined classes
+		  File.open( path, 'r' ) do |file|
+		    file.each_line do |line|
+		      temp_file.puts make_classy( line )
+		    end
+		  end
+		  temp_file.close
+		  FileUtils.mv( temp_file.path, path )
 		rescue Exception => e
 			baxter( e )
+		ensure
+		  temp_file.close
+		  temp_file.unlink
 		end
+
 	end
 	alias :champ_kind :add_classes_to_file
 
 	# Invite the ids to the pants party
-	def add_ids_to_file( file )
-		# pass in predefined ids
+	def add_ids_to_file( filename )
+		# TODO: pass in predefined ids
+		path = "#{@view_directory}#{filename}"
+		temp_file = Tempfile.new( 'foo' )
+
 		begin
+		  File.open( path, 'r' ) do |file|
+		    file.each_line do |line|
+		      temp_file.puts show_me_your_id( line )
+		    end
+		  end
+		  temp_file.close
+		  FileUtils.mv( temp_file.path, path )
 		rescue Exception => e
 			baxter( e )
+		ensure
+		  temp_file.close
+		  temp_file.unlink
 		end
 	end
 	alias :brick_tamland :add_ids_to_file
 
 	# Thanks for listening, San Diego. And stay classy, San Diego. Thanks for listening, San Diego.
-	def save_new_file( file )
+	def save_new_file( filename )
 		begin
 		rescue Exception => e
 			baxter( e )
@@ -89,10 +119,20 @@ module StayClassyProcess
 	end
 	alias :veronica_corningstone :save_new_file
 
-#################################################################
+########################### Errors ##############################
 	
 	# Really doesn't need to be here. He just barks out errors
 	def baxter( exception )
 		@errors << exception
+	end
+
+######################### Modify the strings ####################
+
+	def	make_classy( line )
+		return "classy" + line
+	end
+
+	def show_me_your_id( line )
+		return "id" + line
 	end
 end

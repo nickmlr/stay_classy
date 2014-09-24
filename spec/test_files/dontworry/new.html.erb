@@ -1,0 +1,10 @@
+<% page_header "New Event/Tradeshow" %>
+<%= page_image "site_images/overview_image.jpg" %>
+
+<div class="padded">
+  <%= render :partial => 'form' %>
+</div>
+
+<% admin_nav do %>
+  <p><%= link_to "Back to List", events_path %></p>
+<% end -%>

@@ -120,7 +120,7 @@ module StayClassyProcess
 	alias :veronica_corningstone :save_new_file
 
 ########################### Errors ##############################
-	
+
 	# Really doesn't need to be here. He just barks out errors
 	def baxter( exception )
 		@errors << exception
@@ -128,7 +128,7 @@ module StayClassyProcess
 
 ######################### Modify the strings ####################
 
-	def	make_classy( line )
+	def make_classy( line )
 		return "classy" + line
 	end
 

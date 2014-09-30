@@ -6,10 +6,10 @@
 </div>
 
 <% content_for :sidebar do %>
-  <p id="show_me_your_id_p_0" class="classy_p"></p>
+  <p></p>
 <% end -%>
 
 <% admin_nav do %>
-  <p id="show_me_your_id_p_1" class="classy_p"><%= link_to "Show event", @event %></p>
-  <p id="show_me_your_id_p_2" class="classy_p"><%= link_to "Back to list", events_path %></p>
+  <p><%= link_to "Show event", @event %></p>
+  <p><%= link_to "Back to list", events_path %></p>
 <% end -%>

@@ -9,10 +9,10 @@ module StayClassyProcess
 		# I don't know if you heard me counting but I can do over a thousand
 		@id_counter = 0
 
-		prefix = stay_classy.instance_variable_get( :@prefix )
+		@prefix = stay_classy.instance_variable_get( :@prefix )
 		view_dirs = stay_classy.instance_variable_get( :@view_directories )
 
-		printf "\nDirectories to make classy with prefix #{ prefix }: \n".colorize( :yellow )
+		printf "\nDirectories to make classy with prefix #{ @prefix }: \n".colorize( :yellow )
 		view_dirs.map { |vd| printf "#{ vd }\n" }
 
 		# Send the right files to the news team...
@@ -27,10 +27,16 @@ module StayClassyProcess
 
 						printf "#{ file }\n"
 
+						# Strip the underscore from partials and get a clean file name to add to the classes
 						@view_directory = vd
 
-						# Brian Fantana for Sex Pantherization.
-						# He gets @filename for the rest of the team.
+						if file[0] == '_'
+							@file_identifier = file[ 1..-1 ].gsub( '.html', '' ).gsub( '.erb', '' )
+						else
+							@file_identifier = file.gsub( '.html', '' ).gsub( '.erb', '' )
+						end
+
+						# Brian Fantana for Sex Pantherization. He gets @filename for the rest of the team.
 						brian_fantana( file )
 
 						# Champ Kind takes @filename for sex and chicken
@@ -55,7 +61,8 @@ module StayClassyProcess
 
 ############### LADIES AND GENTLEMEN, NEWS TEAM 6 ###############
 
-	# Get the bits of real panther so you know it's good (it opens the file)
+
+	# Brian Fantana - Get the bits of real panther so you know it's good (it opens the file)
 	def load_file( file )
 		begin
 			@filename = file
@@ -65,16 +72,17 @@ module StayClassyProcess
 	end
 	alias :brian_fantana :load_file
 
-	# Slap some BBQ sauce on them elements and woo, woo, woo!!!!
+
+	# Champ Kind - Slap some BBQ sauce on them elements and woo, woo, woo!!!!
 	def add_classes_to_file( filename )
 
-		path = "#{@view_directory}#{filename}"
+		path = "#{ @view_directory }#{ filename }"
 		temp_file = Tempfile.new( 'foo' )
 
 		begin
 		  File.open( path, 'r' ) do |file|
 		    file.each_line do |line|
-		      temp_file.puts make_classy( line )
+		      temp_file.puts make_classy( line, @file_identifier )
 		    end
 		  end
 		  temp_file.close
@@ -89,10 +97,10 @@ module StayClassyProcess
 	end
 	alias :champ_kind :add_classes_to_file
 
-	# Invite the ids to the pants party
+
+	# Brick Tamland - Invite the ids to the pants party
 	def add_ids_to_file( filename )
-		# TODO: pass in predefined ids
-		path = "#{@view_directory}#{filename}"
+		path = "#{ @view_directory }#{ filename }"
 		temp_file = Tempfile.new( 'foo' )
 
 		begin
@@ -116,15 +124,16 @@ module StayClassyProcess
 ########################### Errors ##############################
 
 	# Really doesn't need to be here. He just barks out errors
-	def baxter( exception )
+	def error_notifier( exception )
 		@errors << exception
 	end
+	alias :baxter :error_notifier
 
-	def make_classy( line )
+	def make_classy( line, file_identifier )
 		# TODO: should add file name to end of class
 		StayClassy::Builder::DEFAULT_CLASS_TAGS.each do |tag|
 			if line.include?( "<#{ tag }" ) && !line.include?( "class=" )
-				line = line.gsub( "<#{ tag }", "<#{ tag } class=\"classy_#{ tag }\"" )
+				line = line.gsub( "<#{ tag }", "<#{ tag } class=\"#{ @prefix }#{ tag }_#{ file_identifier }\"" )
 				p line
 			end
 		end
@@ -134,7 +143,7 @@ module StayClassyProcess
 	def show_me_your_id( line )
 		StayClassy::Builder::DEFAULT_ID_TAGS.each do |tag|
 			if line.include?( "<#{ tag }" ) && !line.include?( "id=" )
-				line = line.gsub( "<#{ tag }", "<#{ tag } id=\"show_me_your_id_#{ tag }_#{ @id_counter }\"" )
+				line = line.gsub( "<#{ tag }", "<#{ tag } id=\"#{ @prefix }#{ tag }_#{ @id_counter }\"" )
 				@id_counter += 1
 				p line
 			end

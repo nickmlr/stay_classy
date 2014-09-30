@@ -26,10 +26,9 @@ module StayClassyProcess
 					if file.match( StayClassy::Builder::VIEW_FILE_TYPES_REGEX )
 
 						printf "#{ file }\n"
-
-						# Strip the underscore from partials and get a clean file name to add to the classes
 						@view_directory = vd
 
+						# Strip the underscore from partials and get a clean file name to add to the classes
 						if file[0] == '_'
 							@file_identifier = file[ 1..-1 ].gsub( '.html', '' ).gsub( '.erb', '' )
 						else

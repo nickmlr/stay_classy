@@ -6,6 +6,9 @@ module StayClassyProcess
 	# Once you've built an instance of stay_classy, it's time to hand it over to the channel 6 news team.
 	def process( stay_classy )
 
+		# increments when ids are added
+		@id_counter = 0
+
 		prefix = stay_classy.instance_variable_get( :@prefix )
 		view_dirs = stay_classy.instance_variable_get( :@view_directories )
 
@@ -16,14 +19,15 @@ module StayClassyProcess
 		printf "\nFiles to make classy: \n".colorize( :yellow )
 		view_dirs.each do |vd|
 			Dir.foreach( vd ) do |file|
-
 				# Send each file in each file in the directory to each member of the news team
 				begin
-					@errors ||= []
+					@errors = []
 
 					if file.match( StayClassy::Builder::VIEW_FILE_TYPES_REGEX )
 
-						@view_directory ||= vd
+						printf "#{ file }\n"
+
+						@view_directory = vd
 
 						# Brian Fantana for Sex Pantherization.
 						# He gets @filename for the rest of the team.
@@ -37,6 +41,7 @@ module StayClassyProcess
 
 						# Wears a bra next time
 						veronica_corningstone( @filename )
+
 					end
 
 				rescue Exception => e
@@ -56,7 +61,7 @@ module StayClassyProcess
 	# Get the bits of real panther so you know it's good (it opens the file)
 	def load_file( file )
 		begin
-			@filename ||= file
+			@filename = file
 		rescue Exception => e
 			baxter( e )
 		end
@@ -126,13 +131,25 @@ module StayClassyProcess
 		@errors << exception
 	end
 
-######################### Modify the strings ####################
-
 	def make_classy( line )
-		return "classy" + line
+		# TODO: should add file name to end of class
+		StayClassy::Builder::DEFAULT_CLASS_TAGS.each do |tag|
+			if line.include?( "<#{ tag }" ) && !line.include?( "class=" )
+				line = line.gsub( "<#{ tag }", "<#{ tag } class=\"classy_#{ tag }\"" )
+				p line
+			end
+		end
+		return line
 	end
 
 	def show_me_your_id( line )
-		return "id" + line
+		StayClassy::Builder::DEFAULT_ID_TAGS.each do |tag|
+			if line.include?( "<#{ tag }" ) && !line.include?( "id=" )
+				line = line.gsub( "<#{ tag }", "<#{ tag } id=\"show_me_your_id_#{ tag }_#{ @id_counter }\"" )
+				@id_counter += 1
+				p line
+			end
+		end
+		return line
 	end
 end

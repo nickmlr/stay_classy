@@ -27,8 +27,8 @@ module StayClassy
 		######## StayClassy will only look within the rails/app/views directory. Leave the rest to the channel 9 news team ########
 		VIEWS_DIR = '/home/users/nmueller/Sandbox/stay_classy/spec/test_files' #"#{ Rails.root.join( 'app', 'views' ) }"
 		VIEW_FILE_TYPES_REGEX = Regexp.union( /\.html\.erb$/ , /\.html$/ ).freeze
-		DEFAULT_CLASS_TAGS = %w( h1 h2 h3 h4 h5 h6 div table p ).freeze
-		DEFAULT_ID_TAGS = %w( p span ).freeze
+		DEFAULT_CLASS_TAGS = %w( h1 h2 h3 h4 h5 h6 div table p li tr td ).freeze
+		DEFAULT_ID_TAGS = %w( p span ul ).freeze
 
 	  def initialize( options )
 	  	begin
@@ -59,6 +59,7 @@ module StayClassy
 		  	options[:prefix] ? @prefix = set_prefix( options[:prefix].to_s ) : @prefix = 'classy_'
 
 		  	if options[:tags]
+		  		# TODO: Check if valid HTML tag
 		  		######## Handle tags passed in ########
 		  	end
 		  rescue Exception => e

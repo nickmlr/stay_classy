@@ -1,24 +1,24 @@
 <% form_for @event do |f| %>
   <%= f.error_messages %>
-  <p>
+  <p id="show_me_your_id_p" class="classy_p">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
-  <p>
+  <p id="show_me_your_id_p" class="classy_p">
     <%= f.label :first_date, "Start date of event or tradeshow" %><br />
     <%= f.text_field :first_date, :value => (f.object.first_date ? f.object.first_date.strftime("%m/%d/%Y") : Time.now.to_date.strftime("%m/%d/%Y")), :class => 'datepicker' %>
   </p>
-  <p>
+  <p id="show_me_your_id_p" class="classy_p">
     <%= f.label :date, "Dates to be displayed" %><br />
     <%= f.text_field :date %>
   </p>
-  <p>
+  <p id="show_me_your_id_p" class="classy_p">
     <%= f.label :description %><br />
     <%= f.text_area :description, :class => 'mceEditor' %>
   </p>
-  <p>
+  <p id="show_me_your_id_p" class="classy_p">
     <%= f.label :url %> <em>Link to additional information</em><br />
     <%= f.text_field :url %>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  <p id="show_me_your_id_p" class="classy_p"><%= f.submit "Submit" %></p>
 <% end %>

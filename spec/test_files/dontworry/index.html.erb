@@ -1,12 +1,12 @@
 <% page_header "Events/Tradeshows" %>
 <%= page_image "site_images/overview_image.jpg" %>
 
-<div>
-  <ul>
+<div class="classy_div">
+  <ul id="show_me_your_id_ul">
     <% @events.each do |event| %>
-      <li>
+      <li class="classy_li">
         <%= link_to event.name, event %>
-        <span class="controls-already-there">
+        <span id="show_me_your_id_span" class="controls-already-there">
           <%= link_to "Edit", edit_event_path(event) %> | 
           <%= link_to "Delete", event, :method => :delete, :confirm => "Are you sure?" %>
         </span>
@@ -16,5 +16,5 @@
 </div>
 
 <% admin_nav do %>
-  <p><%= link_to "New event", new_event_path %></p>
+  <p id="show_me_your_id_p" class="classy_p"><%= link_to "New event", new_event_path %></p>
 <% end -%>

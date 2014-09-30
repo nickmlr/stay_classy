@@ -129,6 +129,9 @@ module StayClassyProcess
 	end
 	alias :baxter :error_notifier
 
+
+########## THESE TWO ARE THE BRANS OF THIS OPERATION #############
+
 	def make_classy( line, file_identifier )
 		# TODO: should add file name to end of class
 		StayClassy::Builder::DEFAULT_CLASS_TAGS.each do |tag|
@@ -150,4 +153,7 @@ module StayClassyProcess
 		end
 		return line
 	end
+
+###################################################################
+
 end

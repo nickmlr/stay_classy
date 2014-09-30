@@ -6,7 +6,7 @@ module StayClassyProcess
 	# Once you've built an instance of stay_classy, it's time to hand it over to the channel 6 news team.
 	def process( stay_classy )
 
-		# increments when ids are added
+		# I don't know if you heard me counting but I can do over a thousand
 		@id_counter = 0
 
 		prefix = stay_classy.instance_variable_get( :@prefix )
@@ -38,9 +38,6 @@ module StayClassyProcess
 
 						# Puts @filename in a toaster...fantastic
 						brick_tamland( @filename )
-
-						# Wears a bra next time
-						veronica_corningstone( @filename )
 
 					end
 
@@ -115,14 +112,6 @@ module StayClassyProcess
 	end
 	alias :brick_tamland :add_ids_to_file
 
-	# Thanks for listening, San Diego. And stay classy, San Diego. Thanks for listening, San Diego.
-	def save_new_file( filename )
-		begin
-		rescue Exception => e
-			baxter( e )
-		end
-	end
-	alias :veronica_corningstone :save_new_file
 
 ########################### Errors ##############################
 

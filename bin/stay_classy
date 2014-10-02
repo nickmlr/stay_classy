@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # A tool to add classes and ids to your html files
-require 'stay_classy'
+#require 'stay_classy'
 
 puts "Enter the prefix you want to use (e.g. foo for foo_div):"  
 STDOUT.flush  

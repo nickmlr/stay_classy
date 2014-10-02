@@ -1,6 +1,6 @@
 # StayClassy
 
-TODO: Write a gem description
+Stay Classy adds classes and ids to your html and html.erb files. You defind a prefix and the directories you wish to make classy and Stay Classy will add classes and ids to all of the HTML tags in the directory (unless specified Stay Classy will target every directory in app/views). 
 
 ## Installation
 
@@ -20,7 +20,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Start by running the command:
+```ruby
+stay_classy
+```
+Then enter the prefix you wish to use. For example, a prefix of 'foo' sill produce tags like this inside of a directory named posts:
+```html
+<p class="foo_posts_p">Lorem ipsum...</p>
+```
 
 ## Contributing
 

@@ -33,7 +33,7 @@ module StayClassy
 	  def initialize( options )
 	  	begin
 		  	# Handle user-specified directories here
-		  	if options[:dirs]
+		  	if !options[:dirs].empty?
 
 		  		directories = options[:dirs]
 		  		@view_directories = []
@@ -45,7 +45,7 @@ module StayClassy
 
 		  			# Build an array of valid directories, kind of like a shelf of leather-bound books.
 		  			if valid_dir?( dir ) 
-		  				@view_directories << "#{ VIEWS_DIR }#{ dir }"
+		  				@view_directories << "#{ VIEWS_DIR }/#{ dir }"
 		  			else
 		  				printf "\n#{ VIEWS_DIR }/#{ dir } is not a valid directory. That's bush!\n".colorize( :red )
 		  			end
@@ -62,6 +62,7 @@ module StayClassy
 		  		# TODO: Check if valid HTML tag
 		  		######## Handle tags passed in ########
 		  	end
+
 		  rescue Exception => e
 		  	raise e
 		  end
@@ -69,7 +70,7 @@ module StayClassy
 
 		# Sixty percent of the time, valid directories will return true every time
 		def valid_dir?( directory )
-			Dir.exists?( "#{ VIEWS_DIR }#{ directory }" )
+			Dir.exists?( "#{ VIEWS_DIR }/#{ directory }" )
 		end
 
 		# If no directories are specified, find every directory in the views folder recursively
@@ -83,16 +84,4 @@ module StayClassy
 		end
 
 	end
-end
-
-# Pass intended directories and class/id prefix to new instance
-stay_classy = StayClassy::Builder.new( options = { :prefix => 'nmm',
-																					#:dirs => %w( home ../shared users/sub_users )
-																				 } )
-
-# If directories are there, whammy, send stay_classy off for processing. If not, go f*ck youself San Diego
-if stay_classy.instance_variable_get( :@view_directories ).count == 0
-	printf "\n No directories found. If you were a man I would punch you! \n"
-else
-	StayClassyProcess.process( stay_classy )
 end

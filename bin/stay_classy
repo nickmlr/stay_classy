@@ -1,9 +1,23 @@
 #!/usr/bin/env ruby
-# A tool to add classes and ids to your html files
-#require 'stay_classy'
+require_relative '../lib/stay_classy'
 
-puts "Enter the prefix you want to use (e.g. foo for foo_div):"  
-STDOUT.flush  
-prefix = gets.chomp  
-puts "Prefix:" + prefix  
-# StayClassy.new(ARGV)
+puts "Enter the prefix you want to use (e.g. foo for foo_div):" 
+STDOUT.flush
+
+prefix = gets.chomp
+
+puts "\nEnter the directories you want to make classy within your views directory\nFor example: users posts orders - \n*** If you don't enter a directory stay_classy will target every file in app/views recursively ***"
+STDOUT.flush 
+
+dirs = gets.chomp
+directories = dirs.split(' ')
+
+@stay_classy = StayClassy::Builder.new( options = { :prefix => prefix, :dirs => directories } )
+
+if @stay_classy && @stay_classy.instance_variable_get( :@view_directories ).count == 0
+	printf "\n No directories found. If you were a man I would punch you! \n".yellow
+elsif @stay_classy
+	StayClassyProcess.process( @stay_classy )
+else
+	p "Something has gone terribly wrong"
+end

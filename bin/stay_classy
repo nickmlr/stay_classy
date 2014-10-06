@@ -6,7 +6,7 @@ STDOUT.flush
 
 prefix = gets.chomp
 
-puts "\nEnter the directories you want to make classy within your views directory\nFor example: users posts orders - \n*** If you don't enter a directory stay_classy will target every file in app/views recursively ***"
+puts "\nEnter the directories you want to make classy within your views directory\nFor example: users posts orders \n*** If you don't enter a directory stay_classy will target every file in app/views recursively ***"
 STDOUT.flush 
 
 dirs = gets.chomp

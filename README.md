@@ -28,6 +28,16 @@ Then enter the prefix you wish to use. For example, a prefix of 'foo' sill produ
 ```html
 <p class="foo_posts_p">Lorem ipsum...</p>
 ```
+Ids are assigned a unique number along with the prefix and tag name.
+```html
+<p id="foo_p_15">Lorem ipsum...</p>
+```
+
+Keep in mind that stay_classy only targets plain HTML tags, not embedded Ruby.
+
+You can also specify the directories you want to target. When prompted to enter the directories you wish to target simply type in the name. For example, to apply stay_classy to only app/views/posts and app/views/shared, type posts shared when asked which directories to target.
+
+If you don't specify directories within your app/views folder all directories and files within app/views will be targeted by stay_classy
 
 ## Contributing
 

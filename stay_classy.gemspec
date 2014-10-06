@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "stay_classy"
   spec.version       = StayClassy::VERSION
   spec.authors       = ["Nick Mueller"]
-  spec.email         = ["nmueller@iexposure.com"]
+  spec.email         = ["nickmueller@live.com"]
   spec.summary       = %q{Add classes and ids to your rails app}
   spec.description   = %q{This gem adds classes and ids to the view files and partials in your rails application}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/nickmlr/stay_classy"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

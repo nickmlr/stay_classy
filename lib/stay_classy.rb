@@ -26,7 +26,7 @@ module StayClassy
 	class Builder
 
 		######## StayClassy will only look within the rails/app/views directory. Leave the rest to the channel 9 news team ########
-		VIEWS_DIR = "/app/views".freeze
+		VIEWS_DIR = "app/views".freeze
 		VIEW_FILE_TYPES_REGEX = Regexp.union( /\.html\.erb$/ , /\.html$/ ).freeze
 		DEFAULT_CLASS_TAGS = %w( h1 h2 h3 h4 h5 h6 div table p li tr td ).freeze
 		DEFAULT_ID_TAGS = %w( p span ul ).freeze

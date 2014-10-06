@@ -19,6 +19,7 @@ STAY_CLASSY_PATH = File.dirname(__FILE__) + "/stay_classy/"
 
 require STAY_CLASSY_PATH + "stay_classy_process"
 require 'colorize'
+require 'rails'
 include StayClassyProcess
 
 VIEWS_DIR = Rails.root.join( 'app', 'views' ).freeze

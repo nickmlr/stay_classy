@@ -5,7 +5,7 @@ require 'stay_classy/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "stay_classy"
-  spec.version       = '0.1.0'
+  spec.version       = '0.2.0'
   spec.authors       = ["Nick Mueller"]
   spec.email         = ["nickmueller@live.com"]
   spec.summary       = %q{Add classes and ids to your rails app}

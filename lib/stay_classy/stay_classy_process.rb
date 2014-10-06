@@ -136,7 +136,6 @@ module StayClassyProcess
 		StayClassy::Builder::DEFAULT_CLASS_TAGS.each do |tag|
 			if line.include?( "<#{ tag }" ) && !line.include?( "class=" )
 				line = line.gsub( "<#{ tag }", "<#{ tag } class=\"#{ @prefix }#{ tag }_#{ file_identifier }\"" )
-				p line
 			end
 		end
 		return line
@@ -147,7 +146,6 @@ module StayClassyProcess
 			if line.include?( "<#{ tag }" ) && !line.include?( "id=" )
 				line = line.gsub( "<#{ tag }", "<#{ tag } id=\"#{ @prefix }#{ tag }_#{ @id_counter }\"" )
 				@id_counter += 1
-				p line
 			end
 		end
 		return line
